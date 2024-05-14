@@ -4,13 +4,19 @@ const Tesseract = require("tesseract.js");
 const path = require("path");
 
 const app = express();
-const upload = multer({ dest: "/tmp/uploads" }); // Custom upload directory
 
-// Handle request for /favicon.ico
-app.get("/favicon.ico", (req, res) => {
-  res.status(204).end(); // Respond with No Content status code
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, "public")));
+
+// Set up Multer for file uploads
+const upload = multer({ dest: "uploads/" });
+
+// Route to serve the HTML page
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
+// Route to handle file uploads
 app.post("/upload", upload.single("image"), (req, res) => {
   if (!req.file) {
     return res.status(400).send("No file uploaded.");
