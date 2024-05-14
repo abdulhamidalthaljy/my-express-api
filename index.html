@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Text Extraction</title>
+  </head>
+  <body>
+    <h1>Image Text Extraction</h1>
+    <input type="file" id="imageInput" />
+    <button onclick="uploadImage()">Upload</button>
+    <div id="output"></div>
+
+    <script>
+      function uploadImage() {
+        const fileInput = document.getElementById("imageInput");
+        const file = fileInput.files[0];
+        const formData = new FormData();
+        formData.append("image", file);
+
+        fetch("/upload", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => response.text())
+          .then((text) => {
+            document.getElementById("output").innerText = text;
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            document.getElementById("output").innerText =
+              "Error occurred during text extraction.";
+          });
+      }
+    </script>
+  </body>
+</html>
