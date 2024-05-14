@@ -6,6 +6,11 @@ const path = require("path");
 const app = express();
 const upload = multer({ dest: "/tmp/uploads" }); // Custom upload directory
 
+// Handle request for /favicon.ico
+app.get("/favicon.ico", (req, res) => {
+  res.status(204).end(); // Respond with No Content status code
+});
+
 app.post("/upload", upload.single("image"), (req, res) => {
   if (!req.file) {
     return res.status(400).send("No file uploaded.");
