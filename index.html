@@ -19,6 +19,7 @@
         formData.append("image", file);
 
         fetch("/tmp/uploads", {
+          // Corrected endpoint to "/tmp/uploads"
           method: "POST",
           body: formData,
         })
