@@ -1,20 +1,19 @@
-const express = require("express");
 const multer = require("multer");
 const Tesseract = require("tesseract.js");
+
+const express = require("express");
 const path = require("path");
 
 const app = express();
 
-// Serve static files from the "public" directory
+// Serve the "index.html" file from the root folder
 app.use(express.static(path.join(__dirname)));
-// Route to serve the HTML page
+
+// Define your routes
+// Example route to handle requests to the root URL
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
-
-// Set up Multer for file uploads
-const upload = multer({ dest: "/tmp/uploads" });
-
 // Route to handle file uploads
 app.post("/upload", upload.single("image"), (req, res) => {
   if (!req.file) {
