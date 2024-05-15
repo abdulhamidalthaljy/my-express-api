@@ -6,7 +6,7 @@ const path = require("path");
 const app = express();
 
 // Set up Multer for file uploads
-const upload = multer({ dest: "uploads/" });
+const upload = multer({ dest: "/tmp/uploads/" }); // Use a writable directory
 
 // Serve static files from the root directory
 app.use(express.static(path.join(__dirname)));
