@@ -34,6 +34,10 @@ app.post("/tmp/uploads/", upload.single("image"), (req, res) => {
       res.status(500).send("Error occurred during OCR.");
     });
 });
+// Handle request for /favicon.ico
+app.get("/favicon.ico", (req, res) => {
+  res.status(204).end(); // Respond with No Content status code
+});
 
 // Start the server
 const PORT = process.env.PORT || 5000;
