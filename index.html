@@ -18,8 +18,8 @@
         const formData = new FormData();
         formData.append("image", file);
 
-        fetch("/tmp/uploads", {
-          // Corrected endpoint to "/tmp/uploads"
+        fetch("/upload", {
+          // Corrected endpoint to "/upload"
           method: "POST",
           body: formData,
         })
