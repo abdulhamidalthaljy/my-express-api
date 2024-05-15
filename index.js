@@ -9,7 +9,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 
 // Set up Multer for file uploads
-const upload = multer({ dest: "uploads/" });
+const upload = multer({ dest: "/tmp/uploads" });
 
 // Route to serve the HTML page
 app.get("/", (req, res) => {
