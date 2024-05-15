@@ -6,7 +6,7 @@ const path = require("path");
 const app = express();
 
 // Set up Multer for file uploads
-const upload = multer({ dest: "/tmp/uploads/" }); // Use a writable directory
+const upload = multer({ dest: "/upload" }); // Use a writable directory
 
 // Serve static files from the root directory
 app.use(express.static(path.join(__dirname)));
@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 });
 
 // Route to handle file uploads
-app.post("/tmp/uploads/", upload.single("image"), (req, res) => {
+app.post("/upload", upload.single("image"), (req, res) => {
   if (!req.file) {
     return res.status(400).send("No file uploaded.");
   }

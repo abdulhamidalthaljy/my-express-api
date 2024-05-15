@@ -17,8 +17,7 @@
         const file = fileInput.files[0];
         const formData = new FormData();
         formData.append("image", file);
-
-        fetch("/tmp/uploads/", {
+        fetch("/upload", {
           // Corrected endpoint to "/upload"
           method: "POST",
           body: formData,
