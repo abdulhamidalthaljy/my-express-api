@@ -6,15 +6,14 @@ const path = require("path");
 const app = express();
 
 // Serve static files from the "public" directory
-app.use(express.static(path.join(__dirname, "public")));
-
-// Set up Multer for file uploads
-const upload = multer({ dest: "/tmp/uploads" });
-
+app.use(express.static(path.join(__dirname)));
 // Route to serve the HTML page
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
+
+// Set up Multer for file uploads
+const upload = multer({ dest: "/tmp/uploads" });
 
 // Route to handle file uploads
 app.post("/upload", upload.single("image"), (req, res) => {
